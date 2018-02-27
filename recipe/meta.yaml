@@ -43,8 +43,8 @@ test:
     - nosetests terminado  # [not osx and not linux]
 
 about:
-  home: http://github.com/mitsuhiko/markupsafe
-  license: BSD 3-clause
+  home: https://github.com/jupyter/terminado
+  license: BSD 2-clause
   summary: Terminals served by tornado websockets
   description: |
     Terminado is a Tornado websocket backend for the term.js Javascript
