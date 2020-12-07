@@ -16,6 +16,9 @@ requirements:
   host:
     - python
     - setuptools
+    - ptyprocess  # [not win]
+    - pywinpty  # [win]
+    - tornado >=4
   run:
     - python
     - ptyprocess  # [not win]
