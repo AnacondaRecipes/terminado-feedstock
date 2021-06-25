@@ -10,45 +10,37 @@ source:
 
 build:
   number: 0
-  script: "{{ PYTHON }} setup.py install"
+  skip: true  # [py<36]
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - python
+    - pip
     - setuptools
-    - ptyprocess  # [not win]
-    - pywinpty  # [win]
-    - tornado >=4
+    - wheel
   run:
     - python
     - ptyprocess  # [not win]
-    - pywinpty  # [win]
+    - pywinpty >=1.1.0  # [win]
     - tornado >=4
 
 test:
   imports:
     - terminado
-
   requires:
-    - nose
+    - pip
     - posix  # [win]
-
+    - pytest
+    - pytest-cov
   commands:
-    - nosetests terminado  # [not (osx or win)]
-    # Failing test on osx: https://github.com/conda-forge/staged-recipes/pull/313#issuecomment-208426267
-    # Failing test on Linux (due to ps1 of conda? having conda activate in bashrc? One of those two!
-    # File "/home/ray/m/conda-bld/terminado_1503494513344/_test_env_placehold_.../lib/python2.7/site-packages/terminado/tests/basic_test.py", line 84, in get_pid
-    # ..
-    # self.write_stdin("echo $$\r")
-    # (stdout, extra) = yield self.read_stdout()
-    # pid = int(stdout.split('\n')[1])
-    # ..
-    #  ValueError: invalid literal for int() with base 10: '\x1b]777;notify;Command completed;echo $$\x07\x1b]0;ray@localhost:~/m/conda-bld/terminado_1503494513344/test_tmp\x07\x1b]7;file://localhost.localdomain/home/ray/m/conda-bld/terminado_1503494513344/test_tmp\x07(root) ec'
-    #- nosetests terminado  # [not osx and not linux]
+    # see run_test.py for more
+    - python -m pip check
 
 about:
   home: https://github.com/jupyter/terminado
   license: BSD-2-Clause
+  license_family: BSD
   license_file: LICENSE
   summary: Terminals served by tornado websockets
   description: |
