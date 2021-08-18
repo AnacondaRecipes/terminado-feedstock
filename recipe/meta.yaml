@@ -10,7 +10,7 @@ source:
 
 build:
   number: 0
-  script: "{{ PYTHON }} setup.py install"
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
 
 requirements:
   host:
@@ -18,6 +18,9 @@ requirements:
     - pip
     - setuptools >=40.8.0
     - wheel
+    - ptyprocess  # [not win]
+    - pywinpty >=1.1.0  # [win]
+    - tornado >=4
   run:
     - python >=3.6
     - ptyprocess  # [not win]
