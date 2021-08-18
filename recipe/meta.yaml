@@ -14,15 +14,14 @@ build:
 
 requirements:
   host:
-    - python
-    - setuptools
-    - ptyprocess  # [not win]
-    - pywinpty  # [win]
-    - tornado >=4
+    - python >=3.6
+    - pip
+    - setuptools >=40.8.0
+    - wheel
   run:
-    - python
+    - python >=3.6
     - ptyprocess  # [not win]
-    - pywinpty  # [win]
+    - pywinpty >=1.1.0  # [win]
     - tornado >=4
 
 test:
@@ -30,10 +29,13 @@ test:
     - terminado
 
   requires:
+    - pip
+    - pytest
     - nose
     - posix  # [win]
 
   commands:
+    - pip check
     - nosetests terminado  # [not (osx or win)]
     # Failing test on osx: https://github.com/conda-forge/staged-recipes/pull/313#issuecomment-208426267
     # Failing test on Linux (due to ps1 of conda? having conda activate in bashrc? One of those two!
@@ -49,6 +51,7 @@ test:
 about:
   home: https://github.com/jupyter/terminado
   license: BSD-2-Clause
+  license_family: BSD
   license_file: LICENSE
   summary: Terminals served by tornado websockets
   description: |
