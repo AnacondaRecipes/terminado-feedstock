@@ -43,7 +43,8 @@ test:
   # Testing them to verify that they will succeed
   downstreams:
     - jupyter_server
-    - notebook
+    # notebook >=6.4.6 need to be rebuild for python 3.10 support
+    #- notebook
 
 about:
   home: https://github.com/jupyter/terminado
