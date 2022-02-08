@@ -19,13 +19,13 @@ requirements:
     - python
     - flit
     - pip
-    - setuptools
-    - tornado >=4
+    - setuptools >=40.8.0
+    - tornado
     - wheel
   run:
     - python
     - ptyprocess  # [not win]
-    - pywinpty >=1.1  # [win]
+    - pywinpty >=1.1.0  # [win]
     - tornado >=4
 
 test:
@@ -39,6 +39,11 @@ test:
   commands:
     # see run_test.py for more
     - pip check
+  # Downstream packages are jupyter_server and notebook
+  # Testing them to verify that they will succeed
+  downstreams:
+    - jupyter_server
+    - notebook
 
 about:
   home: https://github.com/jupyter/terminado
