@@ -44,7 +44,7 @@ test:
   downstreams:
     - jupyter_server
     # notebook >=6.4.6 need to be rebuild for python 3.10 support
-    #- notebook
+    - notebook  # [not py310]
 
 about:
   home: https://github.com/jupyter/terminado
