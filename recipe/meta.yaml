@@ -17,23 +17,22 @@ build:
 requirements:
   host:
     - python
-    - flit
+    - hatchling
     - pip
-    - setuptools >=40.8.0
-    - tornado
+    - setuptools
     - wheel
   run:
     - python
     - ptyprocess        # [not win]
     - pywinpty >=1.1.0  # [win]
-    - tornado >=4
+    - tornado >=6.1.0
 
 test:
   requires:
     - pip
     - posix  # [win]
-    - pytest
-    - pytest-cov
+    - pytest >=7.0
+    - pytest-timeout
   imports:
     - terminado
   commands:
@@ -43,8 +42,7 @@ test:
   # Testing them to verify that they will succeed
   downstreams:
     - jupyter_server
-    # notebook >=6.4.6 need to be rebuild for python 3.10 support
-    - notebook  # [not py310]
+    - notebook
 
 about:
   home: https://github.com/jupyter/terminado
