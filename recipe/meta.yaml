@@ -39,9 +39,9 @@ test:
     - terminado
   # Downstream packages are jupyter_server and notebook
   # Testing them to verify that they will succeed
-  downstreams:
-    - jupyter_server
-    - notebook
+  #downstreams:
+  #  - jupyter_server
+  #  - notebook
 
 about:
   home: https://github.com/jupyter/terminado
