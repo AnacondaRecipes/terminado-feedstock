@@ -31,13 +31,12 @@ test:
   requires:
     - pip
     - posix  # [win]
+      # see run_test.py for more details
     - pytest >=7.0
+    - pytest-cov
     - pytest-timeout
   imports:
     - terminado
-  commands:
-    # see run_test.py for more
-    - pip check
   # Downstream packages are jupyter_server and notebook
   # Testing them to verify that they will succeed
   downstreams:
@@ -53,7 +52,7 @@ about:
   description: |
     Terminado is a Tornado websocket backend for the term.js Javascript
     terminal emulator library.
-  doc_url: http://terminado.readthedocs.org/en/latest/
+  doc_url: http://terminado.readthedocs.io
   doc_source_url: https://github.com/takluyver/terminado/blob/master/doc/index.rst
   dev_url: https://github.com/takluyver/terminado
 
