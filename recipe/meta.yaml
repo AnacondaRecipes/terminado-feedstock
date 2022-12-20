@@ -18,8 +18,8 @@ requirements:
   host:
     - python
     - pip
-    - hatchling >=1.5
-    - tornado >=4
+    - hatchling
+    - tornado
     - setuptools
     - wheel
   run:
