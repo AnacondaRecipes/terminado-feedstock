@@ -52,8 +52,7 @@ about:
   description: |
     Terminado is a Tornado websocket backend for the term.js Javascript
     terminal emulator library.
-  doc_url: http://terminado.readthedocs.org/en/latest/
-  doc_source_url: https://github.com/takluyver/terminado/blob/master/doc/index.rst
+  doc_url: https://terminado.readthedocs.io/en/latest/
   dev_url: https://github.com/takluyver/terminado
 
 extra:
