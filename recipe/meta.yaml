@@ -17,16 +17,16 @@ build:
 requirements:
   host:
     - python
-    - flit
     - pip
-    - setuptools >=40.8.0
-    - tornado
+    - hatchling >=1.5
+    - tornado >=4
+    - setuptools
     - wheel
   run:
     - python
     - ptyprocess        # [not win]
     - pywinpty >=1.1.0  # [win]
-    - tornado >=4
+    - tornado >=6.1.0
 
 test:
   requires:
