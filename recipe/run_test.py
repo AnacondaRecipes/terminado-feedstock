@@ -48,6 +48,6 @@ print("Final pytest args for", platform, target_platform, py_major)
 print(" ".join([*pytest, *pytest_args]), flush=True)
 
 # check that the installed package is consistent
-subprocess.run([sys.executable, "-m", "pip check"])
+subprocess.run(["pip check"])
 # actually run the tests
 sys.exit(subprocess.call([*pytest, *pytest_args]))
