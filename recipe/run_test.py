@@ -36,6 +36,10 @@ if platform != "linux":
 if "aarch64" in target_platform:
     skips += ["max_terminals"]
 
+# ppc64le builds will not complete without this statement
+if "ppc64le" in target_platform:
+    skips += ["large_io_doesnt_hang"]
+
 if not skips:
     print("all tests will be run", flush=True)
 
