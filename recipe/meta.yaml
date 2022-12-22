@@ -42,7 +42,13 @@ test:
     - pip check
     - pip list
     - pip list | grep -iE "terminado\s*{{ version.replace(".", "\.") }}"
-
+  # Downstream packages are jupyter_server and notebook
+  # Testing them to verify that they will succeed
+  downstreams:
+    - jupyter_server
+    # notebook >=6.4.6 need to be rebuild for python 3.10 support
+    - notebook  # [not py310]
+    
 about:
   home: https://github.com/jupyter/terminado
   license: BSD-2-Clause
