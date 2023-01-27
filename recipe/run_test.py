@@ -20,10 +20,8 @@ pytest_args = [test_path, "-vv"]
 if not pypy:
     pytest_args += ["--cov", "terminado", "--no-cov-on-fail"]
 
-
-skips = []
-
 # flaky tests
+skips = ["max_terminals"]
 if platform != "linux":
     skips += [
         "basic_command",
@@ -32,9 +30,6 @@ if platform != "linux":
         "single_process",
         "unique_processes"
     ]
-
-if "aarch64" in target_platform:
-    skips += ["max_terminals"]
 
 # ppc64le builds will not complete without this statement
 if "ppc64le" in target_platform:
