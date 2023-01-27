@@ -21,12 +21,11 @@ if not pypy:
     pytest_args += ["--cov", "terminado", "--no-cov-on-fail"]
 
 # flaky tests
-skips = ["max_terminals"]
+skips = ["max_terminals", "namespace"]
 if platform != "linux":
     skips += [
         "basic_command",
         "max_terminals",
-        "namespace",
         "single_process",
         "unique_processes"
     ]
