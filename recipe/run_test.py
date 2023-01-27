@@ -21,14 +21,13 @@ if not pypy:
     pytest_args += ["--cov", "terminado", "--no-cov-on-fail"]
 
 # flaky tests
-skips = ["max_terminals", "namespace"]
-if platform != "linux":
-    skips += [
-        "basic_command",
-        "max_terminals",
-        "single_process",
-        "unique_processes"
-    ]
+skips = [
+    "basic_command",
+    "max_terminals",
+    "namespace",
+    "single_process",
+    "unique_processes"
+]
 
 # ppc64le builds will not complete without this statement
 if "ppc64le" in target_platform:
