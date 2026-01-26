@@ -39,7 +39,7 @@ test:
     - terminado
   commands:
     - pip check
-    - pytest tests -v
+    - pytest tests -vvv --tb=long -s
 
 about:
   home: https://github.com/jupyter/terminado
