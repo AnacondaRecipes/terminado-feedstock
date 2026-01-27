@@ -2,4 +2,5 @@ build_env_vars:
   ANACONDA_ROCKET_ENABLE_PY314 : yes
 
 channels:
+  - https://staging.continuum.io/pbp/fs/winpty-feedstock/pr1/b2a6657
   - https://staging.continuum.io/pbp/fs/pywinpty-feedstock/pr17/70624da
