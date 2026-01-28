@@ -10,7 +10,7 @@ source:
   sha256: de09f2c4b85de4765f7714688fff57d3e75bad1f909b589fde880460c753fd2e
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -28,27 +28,18 @@ requirements:
     - mypy >=1.6,<2
     - traitlets >=5.11.1
 
-{% set tests_to_deselect = "" %}
-# > raise StreamClosedError(real_error=self.error)
-# E tornado.iostream.StreamClosedError: Stream is closed
-{% set tests_to_deselect = "--deselect=tests/basic_test.py::CommonTests::test_basic_command" %}  # [win]
-{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/basic_test.py::UniqueTermTests::test_large_io_doesnt_hang" %}  # [win]
-# TypeError: 'NoneType' object is not subscriptable
-{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/basic_test.py::UniqueTermTests::test_unique_processes" %}  # [win]
-{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/basic_test.py::SingleTermTests::test_single_process" %}  # [win]
-{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/basic_test.py::NamedTermTests::test_namespace" %}  # [win]
-
 test:
   source_files:
     - tests
   requires:
     - pip
     - pytest >=7.0
+    - msys2-bash  # [win] # Required to run tests that need bash on Windows
   imports:
     - terminado
   commands:
     - pip check
-    - pytest -v tests {{ tests_to_deselect }}
+    - pytest tests -vv
 
 about:
   home: https://github.com/jupyter/terminado
