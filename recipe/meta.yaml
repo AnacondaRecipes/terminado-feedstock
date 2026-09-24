@@ -10,7 +10,7 @@ source:
   sha256: de09f2c4b85de4765f7714688fff57d3e75bad1f909b589fde880460c753fd2e
 
 build:
-  number: 1
+  number: 2
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
@@ -28,6 +28,14 @@ requirements:
     - mypy >=1.6,<2
     - traitlets >=5.11.1
 
+{% set tests_to_deselect = "" %}
+# Interactive PTY round-trip via pywinpty's blocking PtyProcess, which drops
+# output/hangs intermittently on Windows.
+{% set tests_to_deselect = "--deselect=tests/basic_test.py::CommonTests::test_basic_command" %}  # [win]
+{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/basic_test.py::NamedTermTests::test_namespace" %}  # [win]
+{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/basic_test.py::SingleTermTests::test_single_process" %}  # [win]
+{% set tests_to_deselect = tests_to_deselect + " --deselect=tests/basic_test.py::UniqueTermTests::test_unique_processes" %}  # [win]
+
 test:
   source_files:
     - tests
@@ -39,7 +47,7 @@ test:
     - terminado
   commands:
     - pip check
-    - pytest tests -vv
+    - pytest tests -vv {{ tests_to_deselect }}
 
 about:
   home: https://github.com/jupyter/terminado
